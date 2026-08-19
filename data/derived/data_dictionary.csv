@@ -1,0 +1,52 @@
+﻿column_name,description,unit,source_raw_column,example_value
+record_id,记录级唯一 ID,,etl,0
+raw_row_index,"原始 protac.csv 数据行索引(0-based, 不含表头)",,protac.csv,123
+compound_id,PROTAC-DB 化合物 ID (非全局唯一),,protac.csv col0,PROTAC-00001
+uniprot,靶蛋白 UniProt ID,,protac.csv col1,P38398
+target,POI / 靶标名称,,protac.csv col2,BRD4
+e3_ligase,E3 连接酶名称,,protac.csv col3,CRBN
+pdb,复合物 PDB ID (若有),,protac.csv col4,7Q2P
+name,化合物名称,,protac.csv col5,Compound A
+smiles,SMILES 结构,,protac.csv col6,CC(=O)...
+article_doi,文献 DOI,,protac.csv col76,10.1021/jm...
+dc50_raw,DC50 原始字符串,nM,protac.csv col7,>1000
+dc50_obs_type,DC50 观测类型,,parsed,right-censored
+dc50_value,"DC50 主值(exact 时为数值, 否则 NaN)",nM,parsed,560
+dc50_lower,DC50 下界(右删失/>=时),nM,parsed,1000
+dc50_upper,DC50 上界(左删失/<=时),nM,parsed,0.5
+dc50_replicates,DC50 原始重复串(若有),,parsed,490/500
+dc50_unit,DC50 单位,,fixed,nM
+dmax_raw,Dmax 原始字符串,%,protac.csv col8,>99
+dmax_obs_type,Dmax 观测类型,,parsed,right-censored
+dmax_value,Dmax 主值,%,parsed,95
+dmax_lower,Dmax 下界,%,parsed,99
+dmax_upper,Dmax 上界,%,parsed,10
+dmax_replicates,Dmax 原始重复串(若有),,parsed,>95/>95
+dmax_unit,Dmax 单位,,fixed,%
+pdc50_value,"pDC50 = 9-log10(DC50), 仅 exact",,parsed,6.25
+pdc50_lower,pDC50 下界(左删失时),,parsed,9.30
+pdc50_upper,pDC50 上界(右删失时),,parsed,6.0
+pctdeg_raw,Percent degradation 原始字符串,%,protac.csv col10,PANC-1:0/0;K562:0/37.7
+pctdeg_value,Percent degradation 数值(展开后每细胞系均值),%,parsed,18.85
+activity_evidence,活动证据: P/N/A/U (provisional),,rule,P
+activity_signal,触发活动证据的规则明细,,rule,DC50=45<=cp;Dmax=92>=P
+activity_cutoff_p_nm,所用 DC50 P 候选 cutoff (nM),nM,config,100
+source_quality,数据来源标注,,fixed,PROTAC-DB 3.0 (database summary of literature)
+source_has_doi,是否有文献 DOI,,derived,with_doi
+cell_line,细胞系(展开自 inline 或 Assay 文本挖掘),,parsed/mined,K562
+treatment_time_h,"处理时间(小时, 从 Assay 文本挖掘)",h,mined,18
+year_doi,从 DOI 提取的文献年份(近似),year,mined,2021
+is_duplicate,完全重复记录级副本,,derived,False
+is_conflict,同键不同值冲突,,derived,False
+has_replicates,含重复测量,,derived,True
+is_dose_series,长串剂量/时间序列标记,,derived,False
+scaffold,Murcko scaffold SMILES (化学系列代理),,rdkit,c1ccccc1
+activity_evidence_v1,"活动证据 v1.0 定稿规则: P/N/A/U (双终点一致优先, Dmax 70/20)",,rule(v1.0 §5),P
+activity_evidence_v1_note,v1.0 规则说明,,fixed,v1.0 定稿规则...
+activity_evidence_v2,"活动证据 v2 定稿: OR 逻辑 P/N/A/U (CP=100/N=1000, Dmax 70/20, 脏值单终点失效)",,rule(v2 §5),P
+activity_signal_v2,触发 v2 标签的规则明细,,rule,DC50=45<=100
+activity_evidence_v2_note,v2 规则说明,,fixed,v2 定稿规则...
+u_subtype,U 语义拆分: U0(无观测)/O-PD(有pctdeg)/A-context(有读数但条件不足),,derived(v2.2),O-PD
+n_subtype,N 语义拆分: N-confirmed(双证据)/N-low-potency(高DC50无佐证)/N-low-depth(仅Dmax低),,derived(v2.2),N-low-potency
+evidence_grade,"证据质量等级 A/B/C/D (现有字段代理, 非完整文献回溯)",,derived(v2.2),A
+label_semantics_note,语义拆分说明,,fixed,v2.2 语义拆分...

@@ -1,0 +1,117 @@
+{
+  "n_records": 15535,
+  "n_expected": 15535,
+  "n_scaffold_groups": 9404,
+  "n_pub_groups": 767,
+  "n_poi": 572,
+  "n_e3": 23,
+  "n_poi_e3_combos": 938,
+  "n_year_known": 6244,
+  "year_coverage": 0.4019,
+  "frac_records_shared_scaffold": 0.5617,
+  "note_scaffold_leakage": "随机划分会把同 scaffold 记录同时放入训练/测试, 估计泄漏率≈此比例; 须用 GroupShuffleSplit(scaffold) 或留系列划分。",
+  "cold_poi_feasible_min20": {
+    "n_groups": 572,
+    "n_groups_ge_20": 168,
+    "median_group_size": 7,
+    "min_group_size": 1,
+    "max_group_size": 713
+  },
+  "cold_e3_feasible_min20": {
+    "n_groups": 23,
+    "n_groups_ge_20": 10,
+    "median_group_size": 13,
+    "min_group_size": 1,
+    "max_group_size": 10871
+  },
+  "cold_poi_e3_feasible_min20": {
+    "n_groups": 938,
+    "n_groups_ge_20": 189,
+    "median_group_size": 4,
+    "min_group_size": 1,
+    "max_group_size": 642
+  },
+  "scaffold_group_size": {
+    "max": 90,
+    "median": 1,
+    "top10_counts": [
+      90,
+      78,
+      66,
+      52,
+      52,
+      47,
+      45,
+      43,
+      36,
+      33
+    ]
+  },
+  "pub_group_size": {
+    "max": 1632,
+    "median": 11,
+    "n_singleton": 62
+  },
+  "recommended_splits": {
+    "random": "仅作与旧工作对照; record_id 直接 shuffle",
+    "scaffold": "GroupShuffleSplit(group=scaffold); 主结果之一",
+    "chemical_series": "同 scaffold 整体同侧 (group=scaffold 即可)",
+    "publication": "GroupShuffleSplit(group=pub_group); 阻止同来源近邻泄漏",
+    "temporal": "year_int 升序; 例: train<=2022 / test>=2023; 仅 6244 条有年份",
+    "cold_poi": "留一/留多 POI; 需 POI 组规模>=阈值",
+    "cold_e3": "留一/留多 E3; 需 E3 组规模>=阈值",
+    "cold_combination": "留 (POI,E3) 组合; 最难且有价值"
+  },
+  "data_contract": {
+    "shape_ok": true,
+    "record_id_dtype_int": true,
+    "record_id_unique": true,
+    "max_col_missing": 0.9963308657869328,
+    "max_missing_lt_1": true,
+    "scaffold_nonnull_rate": 1.0,
+    "panel_balance": "N/A (cross-sectional record-level, not a panel)",
+    "all_checks_pass": true,
+    "top10_missing_columns": [
+      {
+        "column": "pdb",
+        "missing_rate": 0.9963
+      },
+      {
+        "column": "dmax_upper",
+        "missing_rate": 0.9873
+      },
+      {
+        "column": "dmax_replicates",
+        "missing_rate": 0.9753
+      },
+      {
+        "column": "dc50_replicates",
+        "missing_rate": 0.9733
+      },
+      {
+        "column": "dc50_lower",
+        "missing_rate": 0.9701
+      },
+      {
+        "column": "pdc50_upper",
+        "missing_rate": 0.9701
+      },
+      {
+        "column": "dc50_upper",
+        "missing_rate": 0.9694
+      },
+      {
+        "column": "pdc50_lower",
+        "missing_rate": 0.9694
+      },
+      {
+        "column": "dmax_lower",
+        "missing_rate": 0.969
+      },
+      {
+        "column": "dmax_value",
+        "missing_rate": 0.8841
+      }
+    ]
+  }
+}

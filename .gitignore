@@ -1,0 +1,41 @@
+﻿# Python caches and environments
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+env/
+
+# Local configuration and credentials
+.env
+.env.*
+*.key
+*.pem
+
+# Operating-system and editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Raw/upstream data and external record-level rebuild products
+data/raw/*
+!data/raw/raw_data_manifest.csv
+external_data/
+external_results/
+data/external/*record*
+data/external/*prediction*
+data/external/*cohort*
+
+# Local models, logs and temporary outputs
+models/
+logs/
+tmp/
+temp/
+*.log
+
+# Private/internal work products
+_B_workspace_raw.csv
+*raw_submission.xlsx
+AUTHOR_INPUT_TODO.md
+.workbuddy/

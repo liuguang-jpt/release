@@ -1,0 +1,185 @@
+{
+  "protocol": {
+    "external_cohort": "data/external/external_validation_cohort.csv",
+    "predictions": "data/external/external_predictions.csv",
+    "n_models": 36,
+    "split_regimes": [
+      "poi",
+      "pub",
+      "random",
+      "scaffold"
+    ],
+    "seeds": [
+      20260815,
+      20260816,
+      20260817
+    ],
+    "classification_threshold": 0.5,
+    "ece_bins": 10
+  },
+  "task_metrics": {
+    "T3_pn_clf": [
+      {
+        "task": "T3_pn_clf",
+        "summary": "mean_sd_across_12_models",
+        "metric": "roc_auc",
+        "mean": 0.5857411414450052,
+        "sd": 0.01454046844460503,
+        "n_models": 12
+      },
+      {
+        "task": "T3_pn_clf",
+        "summary": "mean_sd_across_12_models",
+        "metric": "pr_auc",
+        "mean": 0.8871036943705354,
+        "sd": 0.00902507534603797,
+        "n_models": 12
+      },
+      {
+        "task": "T3_pn_clf",
+        "summary": "mean_sd_across_12_models",
+        "metric": "balanced_accuracy",
+        "mean": 0.5172497020018941,
+        "sd": 0.022359900817908278,
+        "n_models": 12
+      },
+      {
+        "task": "T3_pn_clf",
+        "summary": "mean_sd_across_12_models",
+        "metric": "mcc",
+        "mean": 0.06349559524929564,
+        "sd": 0.07965449020042348,
+        "n_models": 12
+      },
+      {
+        "task": "T3_pn_clf",
+        "summary": "mean_sd_across_12_models",
+        "metric": "brier",
+        "mean": 0.13577732675087206,
+        "sd": 0.0037779579959593226,
+        "n_models": 12
+      },
+      {
+        "task": "T3_pn_clf",
+        "summary": "mean_sd_across_12_models",
+        "metric": "ece_10bin",
+        "mean": 0.10402506973897203,
+        "sd": 0.008585550222182466,
+        "n_models": 12
+      },
+      {
+        "task": "T3_pn_clf",
+        "summary": "mean_sd_across_12_models",
+        "metric": "sensitivity",
+        "mean": 0.9771194605009633,
+        "sd": 0.011618366935826376,
+        "n_models": 12
+      },
+      {
+        "task": "T3_pn_clf",
+        "summary": "mean_sd_across_12_models",
+        "metric": "specificity",
+        "mean": 0.05737994350282485,
+        "sd": 0.05149702529095246,
+        "n_models": 12
+      },
+      {
+        "task": "T3_pn_clf",
+        "summary": "mean_sd_across_12_models",
+        "metric": "accuracy",
+        "mean": 0.8431327160493828,
+        "sd": 0.007539650308830915,
+        "n_models": 12
+      }
+    ],
+    "T1_pdc50_reg": [
+      {
+        "task": "T1_pdc50_reg",
+        "summary": "mean_sd_across_12_models",
+        "metric": "mae",
+        "mean": 0.8126641279242482,
+        "sd": 0.034081332027354735,
+        "n_models": 12
+      },
+      {
+        "task": "T1_pdc50_reg",
+        "summary": "mean_sd_across_12_models",
+        "metric": "rmse",
+        "mean": 1.122995757351519,
+        "sd": 0.040422866645827595,
+        "n_models": 12
+      },
+      {
+        "task": "T1_pdc50_reg",
+        "summary": "mean_sd_across_12_models",
+        "metric": "r2",
+        "mean": -0.4350363523317416,
+        "sd": 0.10264868341464556,
+        "n_models": 12
+      },
+      {
+        "task": "T1_pdc50_reg",
+        "summary": "mean_sd_across_12_models",
+        "metric": "spearman",
+        "mean": 0.09407591290878241,
+        "sd": 0.06906136967243949,
+        "n_models": 12
+      }
+    ],
+    "T2_dmax_reg": [
+      {
+        "task": "T2_dmax_reg",
+        "summary": "mean_sd_across_12_models",
+        "metric": "mae",
+        "mean": 24.658369938007905,
+        "sd": 2.6239337742527336,
+        "n_models": 12
+      },
+      {
+        "task": "T2_dmax_reg",
+        "summary": "mean_sd_across_12_models",
+        "metric": "rmse",
+        "mean": 47.17001461234156,
+        "sd": 26.31144511470197,
+        "n_models": 12
+      },
+      {
+        "task": "T2_dmax_reg",
+        "summary": "mean_sd_across_12_models",
+        "metric": "r2",
+        "mean": -2.4793392513063366,
+        "sd": 3.808763829355425,
+        "n_models": 12
+      },
+      {
+        "task": "T2_dmax_reg",
+        "summary": "mean_sd_across_12_models",
+        "metric": "spearman",
+        "mean": 0.09049202873855748,
+        "sd": 0.10345255049982281,
+        "n_models": 12
+      }
+    ]
+  },
+  "T4_exploratory": {
+    "n_records": 16138,
+    "label_counts": {
+      "U": 12898,
+      "P": 2768,
+      "N": 472
+    },
+    "label_proportions": {
+      "U": 0.7992316272152683,
+      "P": 0.17152063452720287,
+      "N": 0.029247738257528813
+    },
+    "not_used_for_primary_inference": true,
+    "by_target_file": "data/external/external_T4_exploratory_label_distribution_by_target.csv"
+  },
+  "input_hashes": {
+    "cohort_sha256": "7850c45f1ef6d537a4f606552d3ad48f8311fc85a57582377d678f55c6b4d7b7",
+    "predictions_sha256": "3243bac13ba50031ab571e3ce2c88bdbbf619e36226970544dadb4cdbde1d682"
+  },
+  "external_cohort": "external_data/external_validation_cohort.csv (user-rebuilt; not distributed)",
+  "predictions": "external_results/external_predictions.csv (user-rebuilt; not distributed)"
+}

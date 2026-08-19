@@ -1,0 +1,5 @@
+﻿filename,source_url,download_date,rows,cols,sha256,notes
+protac.csv,http://cadd.zju.edu.cn/protacdb/,2026-08-15,15502,89,55def71491f650c071ac05c1826a38bc05f63f1d68bb6eab7b272fe022c5149e,主表: DC50/Dmax/结合亲和力/细胞活性/渗透性/理化性质/DOI
+warhead.csv,http://cadd.zju.edu.cn/protacdb/,2026-08-15,1742,29,4be09d0f9a4047f556c6297fd6093b419908aea8143df2112477a6a2b8d50159,Warhead 组件表 (Compound ID 关联)
+linker.csv,http://cadd.zju.edu.cn/protacdb/,2026-08-15,4045,15,1bb55bbd529f3da0bb11176633d2817ec26c01b79ad2da926d3709600ba9b25d,Linker 组件表 (Compound ID + Smiles)
+e3_ligand.csv,http://cadd.zju.edu.cn/protacdb/,2026-08-15,185,29,2b6d09355c63f5504ef2ef717852ff12965d03aa8d0e013968e3d9480d616be9,E3 ligand 组件表 (Compound ID 关联)
