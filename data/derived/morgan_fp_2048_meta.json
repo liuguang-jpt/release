@@ -1,0 +1,17 @@
+{
+  "schema": "morgan-feature-cache-v1.0.0",
+  "generated_at": "2026-08-17 11:31:36",
+  "dataset_path": "data/derived/protac_clean_record_level.csv",
+  "dataset_sha256": "b6b0b6b75c9b8f1ca8efdefedea0ff133cf4847c68839a50f99dd6b02412603b",
+  "feature_path": "data/derived/morgan_fp_2048.npy",
+  "feature_sha256": "4261f04f9c55c283723af6c837677b9122a67f423f7fba4fc50b4674ef3f81c9",
+  "index_path": "data/derived/morgan_fp_2048_index.csv",
+  "index_sha256": "1adab9a8bc903e80938b5fa64c1baae7ce1e97bc09e8b2b80d433d7ffba9119a",
+  "n_records": 15535,
+  "n_bits": 2048,
+  "radius": 2,
+  "dtype": "float32",
+  "smiles_column": "smiles",
+  "invalid_smiles_zero_vectors": 0,
+  "rdkit_version": "2026.03.5"
+}
