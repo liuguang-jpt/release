@@ -1,0 +1,11 @@
+﻿# Core environment for release v1.0.0
+# Tested project versions; use a clean Python 3.11-3.13 environment.
+pandas==3.0.5
+numpy==2.5.1
+scikit-learn==1.9.0
+scipy==1.18.0
+xgboost==3.4.1
+rdkit==2026.3.5
+matplotlib==3.11.1
+openpyxl==3.1.5
+joblib==1.5.3
