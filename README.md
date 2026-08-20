@@ -1,6 +1,6 @@
 ﻿# Bias-Aware Learning from Censored and Incompletely Observed PROTAC Degradation Data
 
-Public GitHub release **v1.0.1** accompanying the manuscript of the same title. The corresponding versioned Zenodo record will be cited here after its publication is verified.
+Public GitHub release **v1.0.2** accompanying the v3.2 manuscript revision of the same title. The corresponding versioned Zenodo record will be cited here after its publication is verified.
 
 **Authors:** Guanglu Liu; Shuang Wang (corresponding author)  
 **Affiliation:** College of Computer Science and Technology / Qingdao Institute of Software, China University of Petroleum (East China), Qingdao, China  
@@ -11,9 +11,9 @@ Public GitHub release **v1.0.1** accompanying the manuscript of the same title. 
 This repository is the public source release. The versioned Zenodo archive remains the permanent archival record and must be checked for version consistency before citation.
 
 - GitHub repository: `https://github.com/liuguang-jpt/release`
-- Release tag: `v1.0.1`
-- Earlier Zenodo archive DOI: `10.5281/zenodo.22015283` (v1.0.0; do not cite for v1.0.1)
-- Required final check: the GitHub repository, `v1.0.1` tag and the v1.0.1 Zenodo DOI must resolve publicly before manuscript availability statements cite this release.
+- Release tag: `v1.0.2`
+- Earlier Zenodo archive DOI: `10.5281/zenodo.22015283` (v1.0.0; do not cite as the v1.0.2 archive DOI)
+- Required final check: the GitHub repository, `v1.0.2` tag and the v1.0.2 Zenodo DOI must resolve publicly before manuscript availability statements cite this release.
 
 ## What this release contains
 
@@ -73,6 +73,10 @@ python code/baseline_pipeline.py
 python code/pu_pipeline.py
 python code/calib_sensitivity_pipeline.py
 python code/censored_eval_pipeline.py
+
+# Run the v4 reviewer-requested comparisons
+python code/matched_backbone_pu.py
+python code/head_to_head_reimplementations.py
 ```
 
 The raw PROTAC-DB snapshot is not included. Place an authorised local copy in the location expected by the ETL command or provide the relevant command-line/environment configuration.
@@ -101,6 +105,9 @@ python external_code/build_external_validation_report.py
 - `data/external/external_validation_summary.json` — aggregate TPDdb-derived evaluation summary.
 - `reports/pu_prior_multiplier_sensitivity_v4.json` — 0.8x/1.0x/1.2x prior sensitivity.
 - `reports/dmax_publication_extreme_diagnostic_v4.json` — diagnostic of the extreme publication-split Dmax R2.
+- `reports/matched_backbone_pu_results_v4.json` and `matched_backbone_pu_predictions_v4.csv` — common-MLP supervised/PU comparison under the frozen manifest.
+- `reports/head_to_head_reimplementations_v4.json` and `head_to_head_reimplementations_v4.csv` — DeepPROTACs- and DegradeMaster-aligned protocol-constrained comparisons; these are not official-weight reproductions.
+- `docs/HEAD_TO_HEAD_PROTOCOL_V4.md` — source commits, missing inputs, feature mapping and comparison boundaries for the two representative models.
 - `docs/DATA_VERSION_README.md` — data lineage and execution notes.
 - `ZENODO_GITHUB_UPLOAD_GUIDE.md` — exact GitHub and Zenodo publication fields.
 

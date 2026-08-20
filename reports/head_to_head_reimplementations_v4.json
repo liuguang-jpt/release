@@ -1,0 +1,852 @@
+{
+  "meta": {
+    "script": "head_to_head_reimplementations.py",
+    "generated": "2026-08-21 01:37:56",
+    "manifest": "E:\\科研数据库\\40_项目_Bias-Aware\\07_公开发布包\\release_v1.0.1\\github_repo\\data\\derived\\split_manifest_v3.csv",
+    "manifest_sha256": "c0606e43f69a702f0bf7e70ec1836a5949221b306d809da4c54bb845419bff62",
+    "split_schema": "protac-benchmark-split-v3.0.0",
+    "feature_info": {
+      "morgan": "radius=2, 2048 bits",
+      "categorical": [
+        "target",
+        "e3_ligase"
+      ],
+      "descriptors": [
+        "MolWt",
+        "MolLogP",
+        "TPSA",
+        "HBD",
+        "HBA",
+        "RotB",
+        "RingCount",
+        "FractionCSP3",
+        "AromaticRings"
+      ],
+      "feature_dim": 2653
+    },
+    "task": "P/N classification on common test subset; frozen all_records_2way train/test roles",
+    "models": {
+      "DeepPROTACs": {
+        "paper": "Li et al., Nature Communications 2022",
+        "doi": "10.1038/s41467-022-34807-3",
+        "repo": "https://github.com/fenglei104/DeepPROTACs",
+        "commit": "dfb62c4d137b7133d5ea4834a2615779630f2a52",
+        "class": "paper-aligned reimplementation",
+        "missing_inputs": [
+          "target pocket",
+          "E3-ligase pocket",
+          "target ligand",
+          "E3-ligase ligand",
+          "linker segmentation"
+        ],
+        "deviation": "2D PROTAC Morgan representation plus target/E3 identity and RDKit descriptors; no pocket or ligand graph inputs"
+      },
+      "DegradeMaster": {
+        "paper": "Liu et al., Bioinformatics 2025",
+        "doi": "10.1093/bioinformatics/btaf191",
+        "repo": "https://github.com/ABILiLab/DegradeMaster",
+        "commit": "aa149beaf067a051e070b3b281f7dba43c2f3e90",
+        "class": "protocol-constrained reimplementation",
+        "missing_inputs": [
+          "PROTAC 3D coordinates",
+          "target-pocket coordinates",
+          "E3-pocket coordinates",
+          "official PROTAC-8K preprocessing"
+        ],
+        "deviation": "Morgan plus RDKit descriptors and target/E3 identity; confidence-threshold pseudo-label enrichment replaces 3D E(3)-equivariant graph encoding"
+      }
+    },
+    "boundary": "Neither neural result is an official-weight reproduction; missing structural inputs are documented above.",
+    "runtime_device": "cuda"
+  },
+  "splits": {
+    "random": {
+      "morgan_xgboost::roc_auc": {
+        "mean": 0.9160198470307107,
+        "sd": 0.01034284466780762
+      },
+      "morgan_xgboost::pr_auc": {
+        "mean": 0.9745911366242005,
+        "sd": 0.005002470905438929
+      },
+      "morgan_xgboost::mcc": {
+        "mean": 0.6809777686489403,
+        "sd": 0.010240431732945409
+      },
+      "morgan_xgboost::balanced_acc": {
+        "mean": 0.8145442282277288,
+        "sd": 0.006301584344360726
+      },
+      "morgan_xgboost::brier": {
+        "mean": 0.06861875009937231,
+        "sd": 0.0010675627214971244
+      },
+      "morgan_xgboost::ece": {
+        "mean": 0.03127441245317792,
+        "sd": 0.004918929018307004
+      },
+      "deepprotacs_aligned::roc_auc": {
+        "mean": 0.9063577760725271,
+        "sd": 0.009171839800915677
+      },
+      "deepprotacs_aligned::pr_auc": {
+        "mean": 0.9678087128665629,
+        "sd": 0.0011149615129661158
+      },
+      "deepprotacs_aligned::mcc": {
+        "mean": 0.6660212886538831,
+        "sd": 0.027335339848748537
+      },
+      "deepprotacs_aligned::balanced_acc": {
+        "mean": 0.8411177960305151,
+        "sd": 0.008261615788923985
+      },
+      "deepprotacs_aligned::brier": {
+        "mean": 0.08880923381734257,
+        "sd": 0.0066098516545912
+      },
+      "deepprotacs_aligned::ece": {
+        "mean": 0.08623411003941363,
+        "sd": 0.007055575674147606
+      },
+      "degrademaster_aligned::roc_auc": {
+        "mean": 0.9027707501001907,
+        "sd": 0.012415090779609672
+      },
+      "degrademaster_aligned::pr_auc": {
+        "mean": 0.9686803664004696,
+        "sd": 0.004429929743766096
+      },
+      "degrademaster_aligned::mcc": {
+        "mean": 0.6656029395239473,
+        "sd": 0.04640912295565489
+      },
+      "degrademaster_aligned::balanced_acc": {
+        "mean": 0.8376092045811839,
+        "sd": 0.026940836845616153
+      },
+      "degrademaster_aligned::brier": {
+        "mean": 0.09244550879853129,
+        "sd": 0.0077460372647207626
+      },
+      "degrademaster_aligned::ece": {
+        "mean": 0.08877778740850657,
+        "sd": 0.009503303194447733
+      },
+      "per_seed": [
+        {
+          "seed": 20260815,
+          "n_train_p": 2003,
+          "n_train_n": 434,
+          "n_train_u": 9476,
+          "n_test_p": 481,
+          "n_test_n": 100,
+          "degrademaster_pseudolabel": {
+            "n_candidates": 9258,
+            "n_pseudo": 6781,
+            "threshold": 0.9,
+            "max_each": 4874
+          },
+          "metrics": {
+            "morgan_xgboost": {
+              "roc_auc": 0.9013929313929313,
+              "pr_auc": 0.9675611936219116,
+              "mcc": 0.6756725805690352,
+              "balanced_acc": 0.8162889812889813,
+              "brier": 0.06762180740973826,
+              "ece": 0.02459128267049997
+            },
+            "deepprotacs_aligned": {
+              "roc_auc": 0.8933887733887733,
+              "pr_auc": 0.9662347304897436,
+              "mcc": 0.6284089577434064,
+              "balanced_acc": 0.8294594594594595,
+              "brier": 0.09609094777992493,
+              "ece": 0.09353140393118403
+            },
+            "degrademaster_aligned": {
+              "roc_auc": 0.8860083160083161,
+              "pr_auc": 0.9629856732289517,
+              "mcc": 0.6013929313929314,
+              "balanced_acc": 0.8006964656964657,
+              "brier": 0.10321119311009273,
+              "ece": 0.10118013013817209
+            }
+          }
+        },
+        {
+          "seed": 20260816,
+          "n_train_p": 2002,
+          "n_train_n": 423,
+          "n_train_u": 9493,
+          "n_test_p": 482,
+          "n_test_n": 111,
+          "degrademaster_pseudolabel": {
+            "n_candidates": 9249,
+            "n_pseudo": 6837,
+            "threshold": 0.9,
+            "max_each": 4850
+          },
+          "metrics": {
+            "morgan_xgboost": {
+              "roc_auc": 0.923292587193002,
+              "pr_auc": 0.9774190864531445,
+              "mcc": 0.6953004482795514,
+              "balanced_acc": 0.8212403274643938,
+              "brier": 0.07009911461642573,
+              "ece": 0.03628798998251527
+            },
+            "deepprotacs_aligned": {
+              "roc_auc": 0.9126481253037271,
+              "pr_auc": 0.9685141971767964,
+              "mcc": 0.6770933976327002,
+              "balanced_acc": 0.8476131733393144,
+              "brier": 0.09024456533421642,
+              "ece": 0.08847900604605563
+            },
+            "degrademaster_aligned": {
+              "roc_auc": 0.9156760494934768,
+              "pr_auc": 0.9737891878509475,
+              "mcc": 0.709477233378172,
+              "balanced_acc": 0.8642387200478487,
+              "brier": 0.08530862247639845,
+              "ece": 0.0780926915884298
+            }
+          }
+        },
+        {
+          "seed": 20260817,
+          "n_train_p": 1994,
+          "n_train_n": 427,
+          "n_train_u": 9486,
+          "n_test_p": 490,
+          "n_test_n": 107,
+          "degrademaster_pseudolabel": {
+            "n_candidates": 9183,
+            "n_pseudo": 6540,
+            "threshold": 0.9,
+            "max_each": 4842
+          },
+          "metrics": {
+            "morgan_xgboost": {
+              "roc_auc": 0.9233740225061987,
+              "pr_auc": 0.9787931297975451,
+              "mcc": 0.6719602770982341,
+              "balanced_acc": 0.8061033759298112,
+              "brier": 0.06813532827195297,
+              "ece": 0.03294396470651852
+            },
+            "deepprotacs_aligned": {
+              "roc_auc": 0.9130364295250811,
+              "pr_auc": 0.968677210933149,
+              "mcc": 0.6925615105855426,
+              "balanced_acc": 0.8462807552927714,
+              "brier": 0.08009218833788637,
+              "ece": 0.07669192014100124
+            },
+            "degrademaster_aligned": {
+              "roc_auc": 0.9066278847987793,
+              "pr_auc": 0.96926623812151,
+              "mcc": 0.6859386538007385,
+              "balanced_acc": 0.847892427999237,
+              "brier": 0.08881671080910268,
+              "ece": 0.08706054049891782
+            }
+          }
+        }
+      ],
+      "manifest_family": "all_records_2way"
+    },
+    "scaffold": {
+      "morgan_xgboost::roc_auc": {
+        "mean": 0.9065494813092084,
+        "sd": 0.024581994579241383
+      },
+      "morgan_xgboost::pr_auc": {
+        "mean": 0.9743377213188623,
+        "sd": 0.009013589568410368
+      },
+      "morgan_xgboost::mcc": {
+        "mean": 0.6315034815768344,
+        "sd": 0.03179197394164863
+      },
+      "morgan_xgboost::balanced_acc": {
+        "mean": 0.7992987064949603,
+        "sd": 0.026476731370801376
+      },
+      "morgan_xgboost::brier": {
+        "mean": 0.07616268459541872,
+        "sd": 0.0131609900661576
+      },
+      "morgan_xgboost::ece": {
+        "mean": 0.03846356019699675,
+        "sd": 0.008996551730812877
+      },
+      "deepprotacs_aligned::roc_auc": {
+        "mean": 0.9001701109981098,
+        "sd": 0.01772303574806549
+      },
+      "deepprotacs_aligned::pr_auc": {
+        "mean": 0.967943200217782,
+        "sd": 0.010245898720400057
+      },
+      "deepprotacs_aligned::mcc": {
+        "mean": 0.625732940932186,
+        "sd": 0.030745846737361922
+      },
+      "deepprotacs_aligned::balanced_acc": {
+        "mean": 0.803396344655586,
+        "sd": 0.015818924408029147
+      },
+      "deepprotacs_aligned::brier": {
+        "mean": 0.08928409010318834,
+        "sd": 0.01334482682467645
+      },
+      "deepprotacs_aligned::ece": {
+        "mean": 0.07941410484164226,
+        "sd": 0.01759074725878847
+      },
+      "degrademaster_aligned::roc_auc": {
+        "mean": 0.8961821347531461,
+        "sd": 0.015555870003076802
+      },
+      "degrademaster_aligned::pr_auc": {
+        "mean": 0.9689682400139149,
+        "sd": 0.009031490136404209
+      },
+      "degrademaster_aligned::mcc": {
+        "mean": 0.602325585026464,
+        "sd": 0.014070818003628706
+      },
+      "degrademaster_aligned::balanced_acc": {
+        "mean": 0.8136495139685292,
+        "sd": 0.01600982242872152
+      },
+      "degrademaster_aligned::brier": {
+        "mean": 0.09979477535012941,
+        "sd": 0.009513800771693405
+      },
+      "degrademaster_aligned::ece": {
+        "mean": 0.09450941867093521,
+        "sd": 0.004312413720473787
+      },
+      "per_seed": [
+        {
+          "seed": 20260815,
+          "n_train_p": 1996,
+          "n_train_n": 429,
+          "n_train_u": 9565,
+          "n_test_p": 488,
+          "n_test_n": 105,
+          "degrademaster_pseudolabel": {
+            "n_candidates": 9381,
+            "n_pseudo": 6269,
+            "threshold": 0.9,
+            "max_each": 4850
+          },
+          "metrics": {
+            "morgan_xgboost": {
+              "roc_auc": 0.9204820452771272,
+              "pr_auc": 0.9769474393599553,
+              "mcc": 0.668945304785489,
+              "balanced_acc": 0.8267661982825918,
+              "brier": 0.06726329311013449,
+              "ece": 0.029694381130711628
+            },
+            "deepprotacs_aligned": {
+              "roc_auc": 0.8988680718188915,
+              "pr_auc": 0.961978595942145,
+              "mcc": 0.6675286917180281,
+              "balanced_acc": 0.8063914910226386,
+              "brier": 0.0763829201299155,
+              "ece": 0.05823266643231957
+            },
+            "degrademaster_aligned": {
+              "roc_auc": 0.8962529274004684,
+              "pr_auc": 0.963046382884548,
+              "mcc": 0.5896622558221761,
+              "balanced_acc": 0.7991608118657298,
+              "brier": 0.0908708637610116,
+              "ece": 0.09051930178687184
+            }
+          }
+        },
+        {
+          "seed": 20260816,
+          "n_train_p": 2005,
+          "n_train_n": 425,
+          "n_train_u": 9419,
+          "n_test_p": 479,
+          "n_test_n": 109,
+          "degrademaster_pseudolabel": {
+            "n_candidates": 9209,
+            "n_pseudo": 6357,
+            "threshold": 0.9,
+            "max_each": 4860
+          },
+          "metrics": {
+            "morgan_xgboost": {
+              "roc_auc": 0.8720001532244162,
+              "pr_auc": 0.9622273440705247,
+              "mcc": 0.5912262062539068,
+              "balanced_acc": 0.7635268430024325,
+              "brier": 0.0947692907593352,
+              "ece": 0.05083144719706101
+            },
+            "deepprotacs_aligned": {
+              "roc_auc": 0.8791442416349046,
+              "pr_auc": 0.9594893630262932,
+              "mcc": 0.5944525297419821,
+              "balanced_acc": 0.7826990480933137,
+              "brier": 0.10766348326421707,
+              "ece": 0.10130356662536581
+            },
+            "degrademaster_aligned": {
+              "roc_auc": 0.8770948650667485,
+              "pr_auc": 0.962128636591483,
+              "mcc": 0.5953639449591615,
+              "balanced_acc": 0.8058263584302159,
+              "brier": 0.1129769065527531,
+              "ece": 0.10049879727833047
+            }
+          }
+        },
+        {
+          "seed": 20260817,
+          "n_train_p": 1943,
+          "n_train_n": 436,
+          "n_train_u": 9641,
+          "n_test_p": 541,
+          "n_test_n": 98,
+          "degrademaster_pseudolabel": {
+            "n_candidates": 9367,
+            "n_pseudo": 6400,
+            "threshold": 0.9,
+            "max_each": 4758
+          },
+          "metrics": {
+            "morgan_xgboost": {
+              "roc_auc": 0.9271662454260817,
+              "pr_auc": 0.9838383805261073,
+              "mcc": 0.6343389336911076,
+              "balanced_acc": 0.8076030781998567,
+              "brier": 0.0664554699167865,
+              "ece": 0.034864852263217616
+            },
+            "deepprotacs_aligned": {
+              "roc_auc": 0.9224980195405333,
+              "pr_auc": 0.982361641684908,
+              "mcc": 0.6152176013365478,
+              "balanced_acc": 0.8210984948508053,
+              "brier": 0.08380586691543247,
+              "ece": 0.0787060814672414
+            },
+            "degrademaster_aligned": {
+              "roc_auc": 0.9151986117922216,
+              "pr_auc": 0.981729700565714,
+              "mcc": 0.6219505542980548,
+              "balanced_acc": 0.8359613716096419,
+              "brier": 0.09553655573662356,
+              "ece": 0.09251015694760328
+            }
+          }
+        }
+      ],
+      "manifest_family": "all_records_2way"
+    },
+    "pub": {
+      "morgan_xgboost::roc_auc": {
+        "mean": 0.7387631150021745,
+        "sd": 0.004851298478515545
+      },
+      "morgan_xgboost::pr_auc": {
+        "mean": 0.9211373250109682,
+        "sd": 0.016779678183226957
+      },
+      "morgan_xgboost::mcc": {
+        "mean": 0.2018811642045321,
+        "sd": 0.07506286038088683
+      },
+      "morgan_xgboost::balanced_acc": {
+        "mean": 0.5503779647692455,
+        "sd": 0.026885288933261007
+      },
+      "morgan_xgboost::brier": {
+        "mean": 0.12358701951170724,
+        "sd": 0.027552008344193444
+      },
+      "morgan_xgboost::ece": {
+        "mean": 0.08584039393426117,
+        "sd": 0.019464697274787175
+      },
+      "deepprotacs_aligned::roc_auc": {
+        "mean": 0.7089386572402815,
+        "sd": 0.02866352885050319
+      },
+      "deepprotacs_aligned::pr_auc": {
+        "mean": 0.8952500526056312,
+        "sd": 0.042818308014904986
+      },
+      "deepprotacs_aligned::mcc": {
+        "mean": 0.30426380790920776,
+        "sd": 0.04993942914559926
+      },
+      "deepprotacs_aligned::balanced_acc": {
+        "mean": 0.6277872079943098,
+        "sd": 0.024349927032078552
+      },
+      "deepprotacs_aligned::brier": {
+        "mean": 0.15028059624364967,
+        "sd": 0.04709937599004318
+      },
+      "deepprotacs_aligned::ece": {
+        "mean": 0.14128825376560813,
+        "sd": 0.051848179437879026
+      },
+      "degrademaster_aligned::roc_auc": {
+        "mean": 0.7109915223538511,
+        "sd": 0.03708788739578433
+      },
+      "degrademaster_aligned::pr_auc": {
+        "mean": 0.8927316499962586,
+        "sd": 0.04632682714500744
+      },
+      "degrademaster_aligned::mcc": {
+        "mean": 0.29109861738353104,
+        "sd": 0.06897901969789669
+      },
+      "degrademaster_aligned::balanced_acc": {
+        "mean": 0.6336989906899093,
+        "sd": 0.037460828049363716
+      },
+      "degrademaster_aligned::brier": {
+        "mean": 0.1594655902960377,
+        "sd": 0.05204871195429453
+      },
+      "degrademaster_aligned::ece": {
+        "mean": 0.15657329411824636,
+        "sd": 0.05671633435993826
+      },
+      "per_seed": [
+        {
+          "seed": 20260815,
+          "n_train_p": 2129,
+          "n_train_n": 426,
+          "n_train_u": 9011,
+          "n_test_p": 355,
+          "n_test_n": 108,
+          "degrademaster_pseudolabel": {
+            "n_candidates": 8883,
+            "n_pseudo": 6849,
+            "threshold": 0.9,
+            "max_each": 5110
+          },
+          "metrics": {
+            "morgan_xgboost": {
+              "roc_auc": 0.7319509650495567,
+              "pr_auc": 0.8974221987060806,
+              "mcc": 0.26476308562538703,
+              "balanced_acc": 0.5720657276995306,
+              "brier": 0.1621395378080969,
+              "ece": 0.11288279352094133
+            },
+            "deepprotacs_aligned": {
+              "roc_auc": 0.6730046948356807,
+              "pr_auc": 0.834713195355389,
+              "mcc": 0.23369901766125398,
+              "balanced_acc": 0.6028821074595723,
+              "brier": 0.21633391921665873,
+              "ece": 0.21395044749161302
+            },
+            "degrademaster_aligned": {
+              "roc_auc": 0.6616458007303078,
+              "pr_auc": 0.8274048764522892,
+              "mcc": 0.19411082500726543,
+              "balanced_acc": 0.5807381324986959,
+              "brier": 0.23285514136823435,
+              "ece": 0.23648980283949206
+            }
+          }
+        },
+        {
+          "seed": 20260816,
+          "n_train_p": 2033,
+          "n_train_n": 466,
+          "n_train_u": 9940,
+          "n_test_p": 451,
+          "n_test_n": 68,
+          "degrademaster_pseudolabel": {
+            "n_candidates": 9461,
+            "n_pseudo": 6741,
+            "threshold": 0.9,
+            "max_each": 4998
+          },
+          "metrics": {
+            "morgan_xgboost": {
+              "roc_auc": 0.7428753097691404,
+              "pr_auc": 0.9337235775049102,
+              "mcc": 0.09637234621676176,
+              "balanced_acc": 0.5124885874527194,
+              "brier": 0.10920435264859935,
+              "ece": 0.07677375679559333
+            },
+            "deepprotacs_aligned": {
+              "roc_auc": 0.7431524716316682,
+              "pr_auc": 0.9267746410879243,
+              "mcc": 0.3370208004852317,
+              "balanced_acc": 0.6608353984609364,
+              "brier": 0.12468668129827641,
+              "ece": 0.113472130110265
+            },
+            "degrademaster_aligned": {
+              "roc_auc": 0.7510597365331942,
+              "pr_auc": 0.929704545294316,
+              "mcc": 0.34865804362831376,
+              "balanced_acc": 0.6590256945350201,
+              "brier": 0.117863374570007,
+              "ece": 0.11068818560067267
+            }
+          }
+        },
+        {
+          "seed": 20260817,
+          "n_train_p": 1514,
+          "n_train_n": 388,
+          "n_train_u": 8821,
+          "n_test_p": 970,
+          "n_test_n": 146,
+          "degrademaster_pseudolabel": {
+            "n_candidates": 8545,
+            "n_pseudo": 5145,
+            "threshold": 0.9,
+            "max_each": 3804
+          },
+          "metrics": {
+            "morgan_xgboost": {
+              "roc_auc": 0.7414630701878265,
+              "pr_auc": 0.9322661988219141,
+              "mcc": 0.24450806077144752,
+              "balanced_acc": 0.5665795791554865,
+              "brier": 0.09941716807842543,
+              "ece": 0.0678646314862488
+            },
+            "deepprotacs_aligned": {
+              "roc_auc": 0.7106588052534953,
+              "pr_auc": 0.9242623213735801,
+              "mcc": 0.34207160558113764,
+              "balanced_acc": 0.6196441180624206,
+              "brier": 0.10982118821601387,
+              "ece": 0.09644218369494639
+            },
+            "degrademaster_aligned": {
+              "roc_auc": 0.7202690297980512,
+              "pr_auc": 0.9210855282421709,
+              "mcc": 0.330526983515014,
+              "balanced_acc": 0.6613331450360118,
+              "brier": 0.12767825494987178,
+              "ece": 0.12254189391457436
+            }
+          }
+        }
+      ],
+      "manifest_family": "all_records_2way"
+    },
+    "poi": {
+      "morgan_xgboost::roc_auc": {
+        "mean": 0.7833140833968472,
+        "sd": 0.01765629219111199
+      },
+      "morgan_xgboost::pr_auc": {
+        "mean": 0.9213973807365997,
+        "sd": 0.019555683931258092
+      },
+      "morgan_xgboost::mcc": {
+        "mean": 0.3573811672044063,
+        "sd": 0.029998451095836324
+      },
+      "morgan_xgboost::balanced_acc": {
+        "mean": 0.6267845134163925,
+        "sd": 0.022540234773461114
+      },
+      "morgan_xgboost::brier": {
+        "mean": 0.14588377085199752,
+        "sd": 0.030315804913340894
+      },
+      "morgan_xgboost::ece": {
+        "mean": 0.09792488775467428,
+        "sd": 0.037162702601853836
+      },
+      "deepprotacs_aligned::roc_auc": {
+        "mean": 0.6903308779307095,
+        "sd": 0.01145438881008708
+      },
+      "deepprotacs_aligned::pr_auc": {
+        "mean": 0.8596645212016915,
+        "sd": 0.04127028073763426
+      },
+      "deepprotacs_aligned::mcc": {
+        "mean": 0.25374528582657674,
+        "sd": 0.039880140975362646
+      },
+      "deepprotacs_aligned::balanced_acc": {
+        "mean": 0.6057007374985214,
+        "sd": 0.018512618057332633
+      },
+      "deepprotacs_aligned::brier": {
+        "mean": 0.19941436020674744,
+        "sd": 0.030981717362856022
+      },
+      "deepprotacs_aligned::ece": {
+        "mean": 0.19436139458255772,
+        "sd": 0.03411963883896515
+      },
+      "degrademaster_aligned::roc_auc": {
+        "mean": 0.71093784077125,
+        "sd": 0.03327015707048533
+      },
+      "degrademaster_aligned::pr_auc": {
+        "mean": 0.8802535656647669,
+        "sd": 0.02712815541580321
+      },
+      "degrademaster_aligned::mcc": {
+        "mean": 0.2760730405109298,
+        "sd": 0.07577022950011393
+      },
+      "degrademaster_aligned::balanced_acc": {
+        "mean": 0.6275728768190801,
+        "sd": 0.029860718045030925
+      },
+      "degrademaster_aligned::brier": {
+        "mean": 0.21793071762206426,
+        "sd": 0.012681509454750727
+      },
+      "degrademaster_aligned::ece": {
+        "mean": 0.2162324954364879,
+        "sd": 0.012545317605596797
+      },
+      "per_seed": [
+        {
+          "seed": 20260815,
+          "n_train_p": 2189,
+          "n_train_n": 419,
+          "n_train_u": 9381,
+          "n_test_p": 295,
+          "n_test_n": 115,
+          "degrademaster_pseudolabel": {
+            "n_candidates": 9269,
+            "n_pseudo": 6543,
+            "threshold": 0.9,
+            "max_each": 5216
+          },
+          "metrics": {
+            "morgan_xgboost": {
+              "roc_auc": 0.7876934414148857,
+              "pr_auc": 0.8967269930901903,
+              "mcc": 0.32412345802284137,
+              "balanced_acc": 0.5994841562269713,
+              "brier": 0.18052669103767077,
+              "ece": 0.146371107639336
+            },
+            "deepprotacs_aligned": {
+              "roc_auc": 0.7053647752394989,
+              "pr_auc": 0.8412164193091172,
+              "mcc": 0.2720749666543627,
+              "balanced_acc": 0.5982313927781872,
+              "brier": 0.2213086977493471,
+              "ece": 0.21417064681346992
+            },
+            "degrademaster_aligned": {
+              "roc_auc": 0.7346941783345615,
+              "pr_auc": 0.8447306563300165,
+              "mcc": 0.29086711208390204,
+              "balanced_acc": 0.620412675018423,
+              "brier": 0.2287434000043796,
+              "ece": 0.22448811157299858
+            }
+          }
+        },
+        {
+          "seed": 20260816,
+          "n_train_p": 1799,
+          "n_train_n": 418,
+          "n_train_u": 9751,
+          "n_test_p": 685,
+          "n_test_n": 116,
+          "degrademaster_pseudolabel": {
+            "n_candidates": 9647,
+            "n_pseudo": 5931,
+            "threshold": 0.9,
+            "max_each": 4434
+          },
+          "metrics": {
+            "morgan_xgboost": {
+              "roc_auc": 0.7598351371759376,
+              "pr_auc": 0.944556905535011,
+              "mcc": 0.3511998445223187,
+              "balanced_acc": 0.6261829851497609,
+              "brier": 0.10668828273338521,
+              "ece": 0.05605744356091851
+            },
+            "deepprotacs_aligned": {
+              "roc_auc": 0.6880380065441731,
+              "pr_auc": 0.9168427665491528,
+              "mcc": 0.19838893572869723,
+              "balanced_acc": 0.5877045054115279,
+              "brier": 0.15559959791529657,
+              "ece": 0.14635270337830558
+            },
+            "degrademaster_aligned": {
+              "roc_auc": 0.6638874905612887,
+              "pr_auc": 0.9105648174895582,
+              "mcc": 0.17676548790253566,
+              "balanced_acc": 0.5951107475459351,
+              "brier": 0.2001330307472944,
+              "ece": 0.1985046472067888
+            }
+          }
+        },
+        {
+          "seed": 20260817,
+          "n_train_p": 2226,
+          "n_train_n": 446,
+          "n_train_u": 9898,
+          "n_test_p": 258,
+          "n_test_n": 88,
+          "degrademaster_pseudolabel": {
+            "n_candidates": 9744,
+            "n_pseudo": 6779,
+            "threshold": 0.9,
+            "max_each": 5344
+          },
+          "metrics": {
+            "morgan_xgboost": {
+              "roc_auc": 0.8024136715997181,
+              "pr_auc": 0.9229082435845976,
+              "mcc": 0.396820199068059,
+              "balanced_acc": 0.6546863988724454,
+              "brier": 0.15043633878493662,
+              "ece": 0.09134611206376832
+            },
+            "deepprotacs_aligned": {
+              "roc_auc": 0.6775898520084566,
+              "pr_auc": 0.8209343777468041,
+              "mcc": 0.29077195509667025,
+              "balanced_acc": 0.6311663143058492,
+              "brier": 0.22133478495559863,
+              "ece": 0.22256083355589762
+            },
+            "degrademaster_aligned": {
+              "roc_auc": 0.7342318534178999,
+              "pr_auc": 0.8854652231747258,
+              "mcc": 0.3605865215463517,
+              "balanced_acc": 0.6671952078928823,
+              "brier": 0.2249157221145187,
+              "ece": 0.22570472752967635
+            }
+          }
+        }
+      ],
+      "manifest_family": "all_records_2way"
+    }
+  }
+}
