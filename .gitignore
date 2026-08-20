@@ -34,6 +34,10 @@ tmp/
 temp/
 *.log
 
+# Large derived feature cache is distributed in the Zenodo archive and can be rebuilt
+# with code/build_morgan_features.py; it is excluded from the GitHub source tree.
+data/derived/morgan_fp_2048.npy
+
 # Private/internal work products
 _B_workspace_raw.csv
 *raw_submission.xlsx

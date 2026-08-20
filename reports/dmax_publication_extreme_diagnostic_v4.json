@@ -1,0 +1,62 @@
+{
+  "scope": "Diagnostic only; publication-split T2 predictions are unchanged and no records are removed.",
+  "rows": [
+    {
+      "seed": 20260815,
+      "n_test": 270,
+      "y_mean": 76.87188888888888,
+      "y_sd": 24.587499619587387,
+      "y_min": 0.0,
+      "y_max": 101.0,
+      "prediction_mean": 81.08747534575286,
+      "prediction_sd": 25.2391389104094,
+      "prediction_min": 47.3271484375,
+      "prediction_max": 249.6060028076172,
+      "mae": 21.415403866803207,
+      "rmse": 35.93673666899807,
+      "r2": -1.1362326188995344,
+      "baseline_mean_squared_error": 604.5451375432099,
+      "worst_absolute_error": 224.6060028076172
+    },
+    {
+      "seed": 20260816,
+      "n_test": 454,
+      "y_mean": 73.46859030837005,
+      "y_sd": 26.107345047201765,
+      "y_min": 0.0,
+      "y_max": 101.0,
+      "prediction_mean": 108.29573801855683,
+      "prediction_sd": 213.0609480394581,
+      "prediction_min": 31.231565475463867,
+      "prediction_max": 1603.5809326171875,
+      "mae": 52.251972957728725,
+      "rmse": 225.51891647338923,
+      "r2": -73.61747253763056,
+      "baseline_mean_squared_error": 681.5934654136505,
+      "worst_absolute_error": 1600.5809326171875
+    },
+    {
+      "seed": 20260817,
+      "n_test": 413,
+      "y_mean": 87.09503631961259,
+      "y_sd": 96.14794397976596,
+      "y_min": 9.07,
+      "y_max": 2000.0,
+      "prediction_mean": 75.62095090667503,
+      "prediction_sd": 12.176668556670776,
+      "prediction_min": 35.91195297241211,
+      "prediction_max": 95.09315490722656,
+      "mae": 23.314809510090157,
+      "rmse": 97.85507514611491,
+      "r2": -0.03582575703212321,
+      "baseline_mean_squared_error": 9244.427131536211,
+      "worst_absolute_error": 1931.0252151489258
+    }
+  ],
+  "pooled_n": 1137,
+  "pooled_y_sd": 61.73066932494988,
+  "interpretation": [
+    "A negative R2 means the frozen model has larger squared error than the test-set mean predictor for that seed.",
+    "The diagnosis separates small test-set variance, prediction range and individual extreme errors; it does not identify a causal mechanism."
+  ]
+}

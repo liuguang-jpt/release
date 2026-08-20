@@ -1,6 +1,6 @@
 ﻿# Bias-Aware Learning from Censored and Incompletely Observed PROTAC Degradation Data
 
-Local release candidate **v1.0.0** accompanying the manuscript of the same title.
+Public GitHub release **v1.0.1** accompanying the manuscript of the same title. The corresponding versioned Zenodo record will be cited here after its publication is verified.
 
 **Authors:** Guanglu Liu; Shuang Wang (corresponding author)  
 **Affiliation:** College of Computer Science and Technology / Qingdao Institute of Software, China University of Petroleum (East China), Qingdao, China  
@@ -8,12 +8,12 @@ Local release candidate **v1.0.0** accompanying the manuscript of the same title
 
 ## Release status
 
-This directory is ready for public deposition, but public availability must not be claimed until both records have been activated and checked.
+This repository is the public source release. The versioned Zenodo archive remains the permanent archival record and must be checked for version consistency before citation.
 
-- Intended GitHub repository: `https://github.com/liuguang-jpt/release`
-- Planned manuscript tag: `v1.0-paper`
-- Author-provided Zenodo DOI: `10.5281/zenodo.22015283`
-- Required final check: the GitHub repository, GitHub Release and DOI must resolve publicly before the manuscript availability statements are upgraded from pending to public.
+- GitHub repository: `https://github.com/liuguang-jpt/release`
+- Release tag: `v1.0.1`
+- Earlier Zenodo archive DOI: `10.5281/zenodo.22015283` (v1.0.0; do not cite for v1.0.1)
+- Required final check: the GitHub repository, `v1.0.1` tag and the v1.0.1 Zenodo DOI must resolve publicly before manuscript availability statements cite this release.
 
 ## What this release contains
 
@@ -21,7 +21,7 @@ This directory is ready for public deposition, but public availability must not 
 |---|---|---|
 | `code/` | Main ETL, labelling, grouped-split, baseline, PU, calibration, censoring and sensitivity-analysis scripts | Project code: MIT |
 | `external_code/` | Scripts for rebuilding the TPDdb-derived external cohort from a user-obtained upstream copy and reproducing frozen-model evaluation | Project code: MIT |
-| `data/derived/` | Record-level PROTAC-DB-derived analysis table, dictionaries, split manifests, feature metadata/index files, calibration annotations and the adjudicated internal-consistency sample | Subject to PROTAC-DB upstream terms; this project grants no additional rights over upstream record content |
+| `data/derived/` | Record-level PROTAC-DB-derived analysis table, dictionaries, split manifests, feature metadata/index files, calibration annotations and the adjudicated internal-consistency sample | Subject to PROTAC-DB upstream terms; this project grants no additional rights over upstream record content. The 121 MB Morgan cache is distributed in the Zenodo archive, not GitHub, and can be rebuilt locally. |
 | `data/derived/gold_set_annotations/` | Historical file path containing the 132-record adjudicated internal-consistency sample, sampling design and annotator templates | Not an independent expert gold standard; record-level content remains subject to upstream terms |
 | `data/raw/` | SHA-256 manifest of the source snapshot; the raw PROTAC-DB snapshot is not redistributed | Manifest only |
 | `data/external/` | Aggregate external-evaluation metrics and model manifest only | TPDdb-derived record-level cohort, labels and predictions are not redistributed |
@@ -91,14 +91,19 @@ python external_code/build_external_validation_report.py
 ## Key files
 
 - `data/derived/protac_clean_record_level.csv` — main record-level analysis table.
+- `data/derived/protac_clean_record_level_v4.csv` — derived table with canonical SMILES, InChI and InChIKey; it does not replace the v3 analysis input.
 - `data/derived/split_manifest_v3.csv` and `split_manifest_v3_audit.json` — frozen split roles and leakage audit.
 - `data/derived/data_dictionary.csv` — field-level dictionary.
+- `data/derived/data_dictionary_v4.csv` and `benchmark_contract_v4.json` — v4 structure-identifier metadata and hashes.
+- `data/derived/morgan_fp_2048.npy` — large feature cache included in the Zenodo archive; excluded from GitHub because it exceeds GitHub's 100 MB file limit and can be rebuilt with `code/build_morgan_features.py`.
 - `data/derived/gold_set_annotations/gold_sample_132.csv` — frozen 132-record sampling file.
 - `data/derived/gold_set_annotations/gold_final.csv` — adjudicated internal-consistency labels.
 - `data/external/external_validation_summary.json` — aggregate TPDdb-derived evaluation summary.
+- `reports/pu_prior_multiplier_sensitivity_v4.json` — 0.8x/1.0x/1.2x prior sensitivity.
+- `reports/dmax_publication_extreme_diagnostic_v4.json` — diagnostic of the extreme publication-split Dmax R2.
 - `docs/DATA_VERSION_README.md` — data lineage and execution notes.
 - `ZENODO_GITHUB_UPLOAD_GUIDE.md` — exact GitHub and Zenodo publication fields.
 
 ## Citation
 
-Use `CITATION.cff`. Cite PROTAC-DB 3.0 for the upstream database and this release for the project code, protocols and frozen benchmark artefacts. The DOI and repository URL must be verified after public activation.
+Use `CITATION.cff`. Cite PROTAC-DB 3.0 for the upstream database and this release for the project code, protocols and frozen benchmark artefacts. Add the version-specific Zenodo DOI to `CITATION.cff` only after the v1.0.1 record is published and verified.

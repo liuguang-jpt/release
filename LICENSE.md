@@ -32,7 +32,7 @@ SOFTWARE.
 
 Original narrative documentation, annotation protocols and reporting text authored for this project are licensed under the Creative Commons Attribution 4.0 International licence (CC BY 4.0), except where a file or embedded item states otherwise.
 
-Suggested attribution: Liu, G. & Wang, S. *Bias-Aware Learning from Censored and Incompletely Observed PROTAC Degradation Data: Dataset and Code*, version 1.0.0 (2026).
+Suggested attribution after public deposition: Liu, G. & Wang, S. *Bias-Aware Learning from Censored and Incompletely Observed PROTAC Degradation Data: Dataset and Code*, version 1.0.1 (2026).
 
 CC BY 4.0 does not override third-party rights in database-derived records, quoted material, trademarks or other upstream content.
 

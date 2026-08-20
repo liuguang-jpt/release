@@ -1,0 +1,26 @@
+{
+  "generated_at_utc": "2026-08-20T07:34:52+00:00",
+  "input": "E:\\科研数据库\\40_项目_Bias-Aware\\07_公开发布包\\release_v1.0\\github_repo\\data\\derived\\protac_clean_record_level.csv",
+  "input_sha256": "b6b0b6b75c9b8f1ca8efdefedea0ff133cf4847c68839a50f99dd6b02412603b",
+  "output": "E:\\科研数据库\\40_项目_Bias-Aware\\07_公开发布包\\release_v1.0\\github_repo\\data\\derived\\protac_clean_record_level_v4.csv",
+  "rdkit_version": "2026.03.5",
+  "rows": 15535,
+  "unique_record_ids": 15535,
+  "status_counts": {
+    "ok": 15535
+  },
+  "valid_structures": 15535,
+  "unique_inchikeys": 10726,
+  "duplicate_inchikey_groups": 2448,
+  "records_in_duplicate_inchikey_groups": 7257,
+  "new_columns": [
+    "canonical_smiles",
+    "inchi",
+    "inchikey",
+    "structure_parse_status",
+    "structure_duplicate_record_count",
+    "is_duplicate_inchikey"
+  ],
+  "scope": "Derived FAIR identifiers only. The frozen v3 analysis table, split manifest and feature cache are unchanged.",
+  "output_sha256": "dc6a81bfb075bb89b9bdc1e8c9db9fd22133af42d66edf020e268cf9f4127e8a"
+}

@@ -1,0 +1,112 @@
+{
+  "split_schema": "protac-benchmark-split-v3.0.0",
+  "generated_at": "2026-08-17 12:00:48",
+  "dataset_version": "PROTAC-DB-3.0-derived-record-level-v0.5-plus-structure-identifiers-v4",
+  "label_version": "activity_evidence_v2",
+  "group_version": "protac_split_groups.csv sha256",
+  "seeds": [
+    20260815,
+    20260816,
+    20260817
+  ],
+  "split_regimes": [
+    "random",
+    "scaffold",
+    "pub",
+    "poi"
+  ],
+  "missing_group_policy": "missing scaffold/publication/POI values receive record-specific groups",
+  "role_policy": {
+    "all_records_2way": "80% train / 20% test by frozen groups",
+    "all_records_3way": "60% train / 20% calibration / 20% test by frozen groups",
+    "temporal_postcutoff": "year<=2022 train, year>=2024 test, 2023 buffer"
+  },
+  "tasks": {
+    "baseline_pdc50": {
+      "split_family": "all_records_2way",
+      "eligibility": "dc50_obs_type == exact and pdc50_value is finite",
+      "endpoint": "pDC50 exact regression",
+      "label_version": null
+    },
+    "baseline_dmax": {
+      "split_family": "all_records_2way",
+      "eligibility": "dmax_obs_type == exact and dmax_value is finite",
+      "endpoint": "Dmax exact regression",
+      "label_version": null
+    },
+    "baseline_pn": {
+      "split_family": "all_records_2way",
+      "eligibility": "activity_evidence_v2 in {P,N}",
+      "endpoint": "P/N classification",
+      "label_version": "activity_evidence_v2"
+    },
+    "baseline_uan": {
+      "split_family": "all_records_2way",
+      "eligibility": "activity_evidence_v2 in {P,N,U}",
+      "endpoint": "diagnostic P versus N/U classification",
+      "label_version": "activity_evidence_v2"
+    },
+    "pu": {
+      "split_family": "all_records_2way",
+      "eligibility": "all records assigned before label filtering",
+      "endpoint": "P versus hidden non-P training; P/N test",
+      "label_version": "activity_evidence_v2"
+    },
+    "calibration": {
+      "split_family": "all_records_3way",
+      "eligibility": "all records assigned before label filtering",
+      "endpoint": "nnPU probability calibration; oracle P/N calibration explicitly separated",
+      "label_version": "activity_evidence_v2"
+    },
+    "censored_pdc50": {
+      "split_family": "all_records_2way",
+      "eligibility": "pDC50 exact or one-sided censored endpoint",
+      "endpoint": "pDC50 regression and censoring-constraint evaluation",
+      "label_version": null
+    },
+    "shortcut_pn": {
+      "split_family": "all_records_2way",
+      "eligibility": "activity_evidence_v2 in {P,N}",
+      "endpoint": "shortcut controls for P/N classification",
+      "label_version": "activity_evidence_v2"
+    },
+    "temporal_postcutoff": {
+      "split_family": "temporal_postcutoff",
+      "eligibility": "year_doi <= 2022 train; year_doi >= 2024 test; 2023/missing excluded",
+      "endpoint": "internal temporal stress test",
+      "label_version": "activity_evidence_v2"
+    }
+  },
+  "eligibility_counts": {
+    "baseline_pdc50": 2625,
+    "baseline_dmax": 1801,
+    "baseline_pn": 3018,
+    "baseline_uan": 14880,
+    "pu": 15535,
+    "calibration": 15535,
+    "censored_pdc50": 3444,
+    "shortcut_pn": 3018,
+    "temporal_postcutoff": 6244
+  },
+  "artifacts": {
+    "dataset_sha256": "b6b0b6b75c9b8f1ca8efdefedea0ff133cf4847c68839a50f99dd6b02412603b",
+    "group_path": "data/derived/protac_split_groups.csv",
+    "group_sha256": "dc0f9be9e6d769979bb21b86290b25b5fc3310508fc619b485a0af1ae5d34b8d",
+    "feature_path": "data/derived/morgan_fp_2048.npy",
+    "feature_sha256": "4261f04f9c55c283723af6c837677b9122a67f423f7fba4fc50b4674ef3f81c9",
+    "feature_index_sha256": "1adab9a8bc903e80938b5fa64c1baae7ce1e97bc09e8b2b80d433d7ffba9119a",
+    "feature_meta_sha256": "a596f974b89834cad60de7394411f3786c25773f5b213fe61e97b8307a488ac5",
+    "manifest_path": "data/derived/split_manifest_v3.csv",
+    "manifest_sha256": "c0606e43f69a702f0bf7e70ec1836a5949221b306d809da4c54bb845419bff62",
+    "dataset_v3_path": "data/derived/protac_clean_record_level.csv",
+    "dataset_v4_path": "data/derived/protac_clean_record_level_v4.csv",
+    "dataset_v4_sha256": "dc6a81bfb075bb89b9bdc1e8c9db9fd22133af42d66edf020e268cf9f4127e8a",
+    "data_dictionary_v4_path": "data/derived/data_dictionary_v4.csv",
+    "data_dictionary_v4_sha256": "becc15d9b953e7e3a7202b734a6f9c33e7d73b96cce2e4eee58e1318aed04466"
+  },
+  "structure_identifier_version": "structure-identifiers-v4",
+  "notes": [
+    "The v3 table, frozen split manifest and feature cache remain the source of reported model results.",
+    "The v4 table adds derived chemical identifiers for FAIR reuse and structure auditing only."
+  ]
+}

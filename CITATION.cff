@@ -2,7 +2,7 @@
 message: "If you use this release, please cite this work and the upstream PROTAC-DB 3.0 source database."
 title: "Bias-Aware Learning from Censored and Incompletely Observed PROTAC Degradation Data: Dataset and Code"
 type: software
-version: 1.0.0
+version: 1.0.1
 authors:
   - family-names: "Liu"
     given-names: "Guanglu"
@@ -13,14 +13,12 @@ authors:
     affiliation: "College of Computer Science and Technology / Qingdao Institute of Software, China University of Petroleum (East China)"
     email: "wangshuang@upc.edu.cn"
 repository-code: "https://github.com/liuguang-jpt/release"
-identifiers:
-  - type: doi
-    value: "10.5281/zenodo.22015283"
+# The version-specific Zenodo DOI will be added after the v1.0.1 deposition is published and verified.
 license:
   - MIT
   - CC-BY-4.0
 abstract: >-
-  Release candidate containing project-authored code and documentation for a
+  Public GitHub release containing project-authored code and documentation for a
   bias-aware PROTAC degradation benchmark, PROTAC-DB-derived analysis artefacts,
   a 150-record calibration annotation set, a 132-record adjudicated
   internal-consistency sample, frozen grouped split manifests, and aggregate
