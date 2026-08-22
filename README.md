@@ -2,9 +2,7 @@
 
 Public GitHub release **v1.0.2** accompanying the v3.2 manuscript revision of the same title. The corresponding versioned Zenodo record will be cited here after its publication is verified.
 
-**Authors:** Guanglu Liu; Shuang Wang (corresponding author)  
-**Affiliation:** College of Computer Science and Technology / Qingdao Institute of Software, China University of Petroleum (East China), Qingdao, China  
-**Contact:** wangshuang@upc.edu.cn
+**Authors:** Guanglu Liu;
 
 ## Release status
 
